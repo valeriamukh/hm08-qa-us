@@ -13,6 +13,8 @@ describe('Create an order', () => {
 
         it('should select Supportive Plan', async () => {
         //Select Supportive plan 
+        await browser.url(`/`)
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const supportivePlanButton = await $(page.supportivePlanButton);
         await supportivePlanButton.waitForDisplayed();
         await supportivePlanButton.click();
@@ -22,6 +24,8 @@ describe('Create an order', () => {
 
         it('should input phone number', async () => {
         //Input phone number
+        await browser.url(`/`)
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const phoneNumber = helper.getPhoneNumber("+1");
         await page.submitPhoneNumber(phoneNumber);
         await expect(await helper.getElementByText(phoneNumber)).toBeExisting();
@@ -30,13 +34,15 @@ describe('Create an order', () => {
 
         it('should add a payment card', async () => {
         //Adding a payment card 
+        await browser.url(`/`)
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         await page.addPaymentMethodCard();
 
         const cardPaymentMethodIcon = await $(page.cardPaymentMethodIcon);
         await cardPaymentMethodIcon.waitForDisplayed();
         await expect(await $(cardPaymentMethodIcon)).toBeExisting();
 
-        await browser.pause(2000);
+        
 
         }),
 
@@ -49,16 +55,21 @@ describe('Create an order', () => {
         const pnoneNumberModal = await $(page.phoneNumberModal);
         await expect(pnoneNumberModal).toBeExisting();
 
-        await browser.pause(2000)
+        
     }),
 
     it('should writing a message for the driver', async () => {
         //Writing message for the driver 
+        await browser.url(`/`)
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
 
         const messageForDriverField = await $('//input[@name="comment"]');
         await messageForDriverField.setValue("Get some whiskey");
 
-        await browser.pause(2000)
+        const message = await messageForDriverField.getValue();
+        await expect(message).toBe ('Get some whiskey');
+
+        
     }),
    
     it('ordering a blancket and handkerchiefs', async () => {
@@ -75,7 +86,7 @@ describe('Create an order', () => {
         
         await expect(await $(blancketAndHandkerchiefsButton)).toBeExisting();
 
-        await browser.pause(5000)
+        
     }),
     
     it('ordering two ice-creams', async () => {
@@ -92,7 +103,7 @@ describe('Create an order', () => {
         const iceCreamValue = await iceCreamPlusButton.getText();
         await expect($(`div=${2}`)).toBeExisting();
 
-        await browser.pause(2000)
+        
     }),
 
         it('the car search modal appears', async () => {
@@ -107,7 +118,10 @@ describe('Create an order', () => {
             await orderButton.waitForDisplayed();
             await orderButton.click();
 
-            await browser.pause(2000)
+            await expect(orderButton).toBeExisting;
+
+
+
 
         })
 

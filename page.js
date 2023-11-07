@@ -18,7 +18,7 @@ module.exports = {
     addCardButton: 'div=Add card',
     linkCardButton: 'button=Link',
     closePaymentMethodModalButton: '.payment-picker .close-button',
-    messageForDriverField: 'comment',
+    messageForDriverField: '#comment',
     iceCreamPlusButton: 'div=+',
     blancketAndHandkerchiefsButton: '.r-sw',
     orderButton: '.reqs-arrow',
